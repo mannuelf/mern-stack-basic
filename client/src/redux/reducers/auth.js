@@ -2,18 +2,25 @@ import { REGISTER_SUCCESS, REGISTER_FAIL } from "../actions/actionTypes";
 
 const initialState = {
   jwtToken: null,
+  isRegistered: false,
 };
 
-export default function register(state = initialState, action) {
-  switch (action.type) {
+export default function register(state = initialState, { type, payload }) {
+  switch (type) {
     case REGISTER_SUCCESS:
-    // return state
+      return {
+        ...state,
+        jwtToken: payload.jwtToken,
+        isRegistered: true,
+      };
     case REGISTER_FAIL:
-    // return old state, do nothing
+      return {
+        ...state,
+        jwtToken: null,
+        isRegistered: false,
+      };
     default:
       return state;
   }
-  // get back a jwt token
-  // store the token in localStorage
   // user is registered
 }

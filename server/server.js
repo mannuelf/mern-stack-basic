@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/connectDB");
+const cors = require("cors");
 
 const app = express();
 
@@ -7,8 +8,10 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+app.use(cors()); // allow everything
 
-app.get("/", function (req, res) {
+app.get("/", cors(), function (req, res) {
+  s;
   res.send("Hello");
 });
 
