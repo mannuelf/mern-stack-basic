@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(cors()); // allow everything
 
 app.get("/", cors(), function (req, res) {
-  s;
   res.send("Hello");
 });
 

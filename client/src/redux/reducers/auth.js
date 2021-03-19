@@ -22,5 +22,4 @@ export default function register(state = initialState, { type, payload }) {
     default:
       return state;
   }
-  // user is registered
 }

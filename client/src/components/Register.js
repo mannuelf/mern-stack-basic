@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { registerUser } from "../redux/actions/auth";
+import Alert from "./Alert";
 
-export default function Register() {
+const Register = ({ alertActionData }) => {
   const [formData, setFormData] = useState({});
+  const errors = alertActionData[0];
   const dispatch = useDispatch();
 
   const updateFields = (e) => {
@@ -17,6 +19,11 @@ export default function Register() {
 
   return (
     <>
+      {!errors ? (
+        ""
+      ) : (
+        <Alert messages={errors.message} alertType={errors.alertType} />
+      )}
       <form
         onSubmit={(e) => {
           submitForm(e);
@@ -60,4 +67,10 @@ export default function Register() {
       </form>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  alertActionData: state.setAlert,
+});
+
+export default connect(mapStateToProps, {})(Register);
